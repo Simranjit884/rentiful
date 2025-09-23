@@ -1,9 +1,23 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+/* Reset margins and padding before Tailwind imports */
 
-/* Import tailwindcss-animate plugin for animations */
-@import "tailwindcss-animate";
+/* html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+} */
+
+/* Nuclear option - override everything
+html[lang="en"] body {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+} */
+
+@import "tailwindcss";
+
+/* Register tailwindcss-animate plugin (Tailwind v4) */
+@plugin "tailwindcss-animate";
 
 *,
 *::before,
@@ -20,6 +34,7 @@ body,
   @apply text-sm;
   @apply bg-white;
   @apply dark:bg-black;
+  @apply m-0 p-0;
 }
 
 @theme {
@@ -228,7 +243,7 @@ body,
 }
 
 .dashboard-container {
-  @apply pt-8 pb-5 px-8;
+  @apply px-8 pt-8 pb-5;
 }
 
 .mapboxgl-popup-content {
@@ -266,20 +281,20 @@ body,
 }
 
 .marker-popup-image {
-  @apply w-10 h-10 object-cover bg-white rounded-lg;
+  @apply h-10 w-10 rounded-lg bg-white object-cover;
 }
 
 .marker-popup-price {
-  @apply text-sm font-semibold text-primary-200;
+  @apply text-primary-200 text-sm font-semibold;
 }
 
 .marker-popup-title {
-  @apply hover:underline hover:text-blue-300 cursor-pointer;
+  @apply cursor-pointer hover:text-blue-300 hover:underline;
   @apply focus:outline-none;
 }
 
 .marker-popup-price-unit {
-  @apply text-xs text-primary-500 font-normal;
+  @apply text-primary-500 text-xs font-normal;
 }
 
 /* scrollbar styling */
@@ -307,6 +322,8 @@ body,
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    margin: 0 !important;
+    padding: 0 !important;
   }
 }
 
