@@ -1,23 +1,6 @@
-/* Reset margins and padding before Tailwind imports */
-
-/* html,
-body {
-  margin: 0 !important;
-  padding: 0 !important;
-} */
-
-/* Nuclear option - override everything
-html[lang="en"] body {
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  outline: 0 !important;
-} */
-
-@import "tailwindcss";
-
-/* Register tailwindcss-animate plugin (Tailwind v4) */
-@plugin "tailwindcss-animate";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 *,
 *::before,
@@ -31,219 +14,76 @@ body,
 .app {
   height: 100%;
   width: 100%;
-  @apply text-black;
   @apply text-sm;
-  @apply dark:bg-black;
   @apply bg-white;
-  @apply m-0 p-0;
+  @apply dark:bg-black;
 }
 
-@theme {
-  --color-background: hsl(0 0% 98%);
-  --color-foreground: hsl(222.2 84% 4.9%);
-  --color-card: hsl(0 0% 100%);
-  --color-card-foreground: hsl(222.2 84% 4.9%);
-  --color-popover: hsl(0 0% 100%);
-  --color-popover-foreground: hsl(222.2 84% 4.9%);
-
-  /* Primary color palette - updated with your config values */
-  --color-primary: hsl(221.2 83.2% 53.3%);
-  --color-primary-foreground: hsl(210 40% 98%);
-  --color-primary-50: #fcfcfc;
-  --color-primary-100: #f1f1f2;
-  --color-primary-200: #e0e0e2;
-  --color-primary-300: #c7c7cc;
-  --color-primary-400: #a8a8af;
-  --color-primary-500: #82828b;
-  --color-primary-600: #57575f;
-  --color-primary-700: #27272a;
-  --color-primary-800: #111113;
-  --color-primary-900: #040405;
-  --color-primary-950: #000000;
-
-  /* Secondary color palette - updated with your config values */
-  --color-secondary: hsl(210 40% 96.1%);
-  --color-secondary-foreground: hsl(222.2 47.4% 11.2%);
-  --color-secondary-50: #fefcfc;
-  --color-secondary-100: #fdf2f2;
-  --color-secondary-200: #fae1e1;
-  --color-secondary-300: #f6c9c9;
-  --color-secondary-400: #f1abab;
-  --color-secondary-500: #eb8686;
-  --color-secondary-600: #e45a5a;
-  --color-secondary-700: #dc2828;
-  --color-secondary-800: #7c1414;
-  --color-secondary-900: #400a0a;
-  --color-secondary-950: #2c0707;
-
-  /* Custom greys from your config */
-  --color-customgreys-primarybg: #1b1c22;
-  --color-customgreys-secondarybg: #25262f;
-  --color-customgreys-darkGrey: #17181d;
-  --color-customgreys-darkerGrey: #3d3d3d;
-  --color-customgreys-dirtyGrey: #6e6e6e;
-
-  /* White variants */
-  --color-white-50: #d2d2d2;
-  --color-white-100: #ffffff;
-
-  /* Tertiary colors */
-  --color-tertiary-50: #e9b306;
-
-  --color-muted: hsl(210 40% 96.1%);
-  --color-muted-foreground: hsl(215.4 16.3% 46.9%);
-  --color-accent: hsl(210 40% 96.1%);
-  --color-accent-foreground: hsl(222.2 47.4% 11.2%);
-  --color-destructive: hsl(0 84.2% 60.2%);
-  --color-destructive-foreground: hsl(210 40% 98%);
-  --color-border: hsl(214.3 31.8% 91.4%);
-  --color-input: hsl(214.3 31.8% 88%);
-  --color-ring: hsl(221.2 83.2% 53.3%);
-
-  /* Chart colors */
-  --color-chart-1: hsl(12 76% 61%);
-  --color-chart-2: hsl(173 58% 39%);
-  --color-chart-3: hsl(197 37% 24%);
-  --color-chart-4: hsl(43 74% 66%);
-  --color-chart-5: hsl(27 87% 67%);
-
-  /* Border radius */
-  --radius: 0.5rem;
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
-
-  /* Container settings */
-  --container-center: true;
-  --container-padding: 2rem;
-  --container-screens-2xl: 1400px;
-
-  /* Font family */
-  --font-family-sans: var(--font-dm-sans);
-
-  /* Font sizes */
-  --font-size-xs: 0.75rem;
-  --font-size-xs-line-height: 1rem;
-  --font-size-sm: 0.875rem;
-  --font-size-sm-line-height: 1.25rem;
-  --font-size-md: 1rem;
-  --font-size-md-line-height: 1.5rem;
-  --font-size-lg: 1.125rem;
-  --font-size-lg-line-height: 1.75rem;
-  --font-size-xl: 1.25rem;
-  --font-size-xl-line-height: 1.75rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-2xl-line-height: 2rem;
-
-  /* Sidebar Colors */
-  --color-sidebar: hsl(0 0% 98%);
-  --color-sidebar-foreground: hsl(240 5.3% 26.1%);
-  --color-sidebar-primary: hsl(240 5.9% 10%);
-  --color-sidebar-primary-foreground: hsl(0 0% 98%);
-  --color-sidebar-accent: hsl(240 4.8% 95.9%);
-  --color-sidebar-accent-foreground: hsl(240 5.9% 10%);
-  --color-sidebar-border: hsl(220 13% 91%);
-  --color-sidebar-ring: hsl(217.2 91.2% 59.8%);
-}
-
-/* Custom keyframes for accordion animations */
-@keyframes accordion-down {
-  from {
-    height: 0;
-  }
-  to {
-    height: var(--radix-accordion-content-height);
-  }
-}
-
-@keyframes accordion-up {
-  from {
-    height: var(--radix-accordion-content-height);
-  }
-  to {
-    height: 0;
-  }
-}
-
-/* Custom Utilities */
-@layer utilities {
-  .animate-accordion-down {
-    animation: accordion-down 0.2s ease-out;
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 88%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  .animate-accordion-up {
-    animation: accordion-up 0.2s ease-out;
+  .dark {
+    --background: 222.2 84% 3.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 15.5%;
+    --ring: 224.3 76.3% 48%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
-}
-
-@theme dark {
-  --color-background: hsl(222.2 84% 3.9%);
-  --color-foreground: hsl(210 40% 98%);
-  --color-card: hsl(222.2 84% 4.9%);
-  --color-card-foreground: hsl(210 40% 98%);
-  --color-popover: hsl(222.2 84% 4.9%);
-  --color-popover-foreground: hsl(210 40% 98%);
-
-  /* Primary color palette - adjusted for dark mode */
-  --color-primary: hsl(217.2 91.2% 59.8%);
-  --color-primary-foreground: hsl(222.2 47.4% 11.2%);
-  --color-primary-50: #040405;
-  --color-primary-100: #111113;
-  --color-primary-200: #27272a;
-  --color-primary-300: #57575f;
-  --color-primary-400: #82828b;
-  --color-primary-500: #a8a8af;
-  --color-primary-600: #c7c7cc;
-  --color-primary-700: #e0e0e2;
-  --color-primary-800: #f1f1f2;
-  --color-primary-900: #fcfcfc;
-  --color-primary-950: #ffffff;
-
-  /* Secondary color palette - adjusted for dark mode */
-  --color-secondary: hsl(217.2 32.6% 17.5%);
-  --color-secondary-foreground: hsl(210 40% 98%);
-  --color-secondary-50: #2c0707;
-  --color-secondary-100: #400a0a;
-  --color-secondary-200: #7c1414;
-  --color-secondary-300: #dc2828;
-  --color-secondary-400: #e45a5a;
-  --color-secondary-500: #eb8686;
-  --color-secondary-600: #f1abab;
-  --color-secondary-700: #f6c9c9;
-  --color-secondary-800: #fae1e1;
-  --color-secondary-900: #fdf2f2;
-  --color-secondary-950: #fefcfc;
-
-  --color-muted: hsl(217.2 32.6% 17.5%);
-  --color-muted-foreground: hsl(215 20.2% 65.1%);
-  --color-accent: hsl(217.2 32.6% 17.5%);
-  --color-accent-foreground: hsl(210 40% 98%);
-  --color-destructive: hsl(0 62.8% 30.6%);
-  --color-destructive-foreground: hsl(210 40% 98%);
-  --color-border: hsl(217.2 32.6% 17.5%);
-  --color-input: hsl(217.2 32.6% 15.5%);
-  --color-ring: hsl(224.3 76.3% 48%);
-
-  /* Chart colors - adjusted for dark mode */
-  --color-chart-1: hsl(220 70% 50%);
-  --color-chart-2: hsl(160 60% 45%);
-  --color-chart-3: hsl(30 80% 55%);
-  --color-chart-4: hsl(280 65% 60%);
-  --color-chart-5: hsl(340 75% 55%);
-
-  /* Sidebar Colors - Dark Mode */
-  --color-sidebar: hsl(240 5.9% 10%);
-  --color-sidebar-foreground: hsl(240 4.8% 95.9%);
-  --color-sidebar-primary: hsl(224.3 76.3% 48%);
-  --color-sidebar-primary-foreground: hsl(0 0% 100%);
-  --color-sidebar-accent: hsl(240 3.7% 15.9%);
-  --color-sidebar-accent-foreground: hsl(240 4.8% 95.9%);
-  --color-sidebar-border: hsl(240 3.7% 15.9%);
-  --color-sidebar-ring: hsl(217.2 91.2% 59.8%);
 }
 
 .dashboard-container {
-  @apply px-8 pt-8 pb-5;
+  @apply px-8 pb-5 pt-8;
 }
 
 .mapboxgl-popup-content {
@@ -317,22 +157,17 @@ body,
 
 @layer base {
   * {
-    border-color: var(--color-border);
+    @apply border-border;
   }
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-    margin: 0 !important;
-    padding: 0 !important;
+    @apply bg-background text-foreground;
   }
 }
 
 /* Amplify UI Overrides */
 [data-amplify-authenticator] {
-  --amplify-components-button-primary-background-color: var(--color-primary);
-  --amplify-components-button-primary-hover-background-color: hsl(
-    from var(--color-primary) h s calc(l * 0.9)
-  );
+  --amplify-components-button-primary-background-color: var(--primary);
+  --amplify-components-button-primary-hover-background-color: hsl(var(--primary) / 0.9);
   --amplify-components-button-border-radius: var(--radius);
   --amplify-components-fieldcontrol-border-radius: var(--radius);
 }
@@ -352,7 +187,7 @@ body,
 [data-amplify-authenticator] [data-amplify-container] {
   border-radius: var(--radius);
   padding: 2rem !important;
-  border: 1px solid var(--color-border);
+  border: 1px solid hsl(var(--border));
 }
 
 [data-amplify-authenticator] [data-amplify-form] {
@@ -367,36 +202,36 @@ body,
   width: 100%;
   height: 2.75rem;
   margin-top: 1rem;
-  background-color: var(--color-primary) !important;
-  color: var(--color-primary-foreground) !important;
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
   @apply font-medium;
   @apply text-sm;
 }
 
 [data-amplify-authenticator] .amplify-button--primary:hover {
-  background-color: hsl(from var(--color-primary) h s calc(l * 0.8)) !important;
+  background-color: hsl(var(--primary) / 0.8) !important;
 }
 
 [data-amplify-authenticator] .amplify-field-group__control {
-  border-color: var(--color-input);
+  border-color: hsl(var(--input));
 }
 
 [data-amplify-authenticator] .amplify-field-group__control:focus-within {
-  border-color: var(--color-ring) !important;
-  box-shadow: 0 0 0 1px var(--color-ring) !important;
+  border-color: hsl(var(--ring)) !important;
+  box-shadow: 0 0 0 1px hsl(var(--ring)) !important;
 }
 
 [data-amplify-authenticator] .amplify-field__show-password {
-  color: var(--color-muted-foreground);
+  color: hsl(var(--muted-foreground));
 }
 
 [data-amplify-authenticator] .amplify-label {
   @apply text-sm font-medium;
-  color: var(--color-foreground);
+  color: hsl(var(--foreground));
 }
 
 [data-amplify-authenticator] .amplify-select {
-  border-color: var(--color-input);
+  border-color: hsl(var(--input));
   border-radius: var(--radius);
   height: 2.5rem;
   @apply text-sm;
@@ -408,11 +243,5 @@ body,
 
 /* Sonner Toast Styles */
 [data-close-button="true"] {
-  background-color: var(--color-background);
-  border-color: var(--color-border);
-  color: var(--color-foreground);
-}
-
-[data-close-button="true"]:hover {
-  background-color: var(--color-muted);
+  @apply bg-background border-border text-foreground hover:bg-muted;
 }
