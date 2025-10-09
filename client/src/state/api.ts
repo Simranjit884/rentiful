@@ -22,8 +22,19 @@ export const api = createApi({
       queryFn: async (_, _queryApi, _extraoptions, fetchWithBQ) => {
         try {
           const session = await fetchAuthSession();
+
+          if (!session.tokens?.idToken) {
+            return { error: "User not authenticated" };
+          }
+
           const { idToken } = session.tokens ?? {};
           const user = await getCurrentUser();
+
+          // 2. Validate required data
+          if (!user?.userId || !idToken?.payload?.["custom:role"]) {
+            return { error: "Invalid user session or missing role" };
+          }
+
           const userRole = idToken?.payload["custom:role"] as string;
 
           const endpoint =
@@ -56,4 +67,4 @@ export const api = createApi({
   }),
 });
 
-export const {} = api;
+export const { useGetAuthUserQuery } = api;
