@@ -10,9 +10,9 @@ const Navbar = () => {
       className="fixed left-0 top-0 z-50 w-full shadow-xl"
       style={{ height: `${NAVBAR_HEIGHT}px` }}
     >
-      <div className="bg-primary-700 flex w-full items-center justify-between px-8 py-3 text-white">
+      <div className="flex w-full items-center justify-between bg-primary-700 px-8 py-3 text-white">
         <div className="flex items-center gap-4 md:gap-6">
-          <Link href="/" className="hover:!text-primary-300 cursor-pointer" scroll={false}>
+          <Link href="/" className="cursor-pointer hover:!text-primary-300" scroll={false}>
             <div className="flex items-center gap-3">
               <Image
                 src="/logo.svg"
@@ -23,19 +23,19 @@ const Navbar = () => {
               />
               <div className="text-xl font-bold">
                 RENT
-                <span className="text-secondary-500 hover:!text-primary-300 font-light">IFUL</span>
+                <span className="font-light text-secondary-500 hover:!text-primary-300">IFUL</span>
               </div>
             </div>
           </Link>
         </div>
-        <p className="text-primary-200 hidden md:block">
+        <p className="hidden text-primary-200 md:block">
           Discover your perfect rental apartment with our advanced search
         </p>
         <div className="flex items-center gap-5">
           <Link href="/signin">
             <Button
               variant="outline"
-              className="hover:text-primary-700 rounded-lg border-white bg-transparent text-white hover:bg-white"
+              className="rounded-lg border-white bg-transparent text-white hover:bg-white hover:text-primary-700"
             >
               Sign In
             </Button>
@@ -43,7 +43,7 @@ const Navbar = () => {
           <Link href="/signup">
             <Button
               variant="secondary"
-              className="bg-secondary-600 hover:text-primary-700 rounded-lg text-white hover:bg-white"
+              className="rounded-lg bg-secondary-600 text-white hover:bg-white hover:text-primary-700"
             >
               Sign Up
             </Button>
