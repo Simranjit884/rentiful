@@ -3,8 +3,22 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
+import { useGetAuthUserQuery } from "@/state/api";
+import { usePathname, useRouter } from "next/navigation";
+import { signOut } from "aws-amplify/auth";
 
 const Navbar = () => {
+  const { data: authUser } = useGetAuthUserQuery();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const isDashboardPage = pathname.includes("/managers") || pathname.includes("/tenants");
+
+  const handleSignOut = async () => {
+    await signOut();
+    window.location.href = "/";
+  };
+
   return (
     <div
       className="fixed left-0 top-0 z-50 w-full shadow-xl"
