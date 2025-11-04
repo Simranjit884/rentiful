@@ -82,6 +82,54 @@ const AppSidebar = ({ userType }: AppSidebarProps) => {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
+
+      <SidebarContent>
+        <SidebarMenu>
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+
+            return (
+              <SidebarMenuItem key={link.href}>
+                <SidebarMenuButton
+                  asChild
+                  className={cn(
+                    "py-7", // Keep vertical padding
+                    isActive ? "bg-gray-100" : "text-gray-600 hover:bg-gray-100",
+                    // Use padding for both states, not margin
+                    open ? "px-7" : "px-3",
+                  )}
+                >
+                  <Link href={link.href} className="w-full" scroll={false}>
+                    {/* This div now controls the layout
+                     */}
+                    <div
+                      className={cn(
+                        "flex items-center",
+                        // KEY FIX #1: Center icon when closed, add gap when open
+                        open ? "gap-3" : "justify-center",
+                      )}
+                    >
+                      <link.icon
+                        className={`h-5 w-5 ${isActive ? "text-blue-600" : "text-gray-600"}`}
+                      />
+
+                      {/* KEY FIX #2: Only render the span if the sidebar is open
+                       */}
+                      {open && (
+                        <span
+                          className={`font-medium ${isActive ? "text-blue-600" : "text-gray-600"}`}
+                        >
+                          {link.label}
+                        </span>
+                      )}
+                    </div>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            );
+          })}
+        </SidebarMenu>
+      </SidebarContent>
     </Sidebar>
   );
 };
