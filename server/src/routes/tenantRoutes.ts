@@ -2,7 +2,7 @@ import express from "express";
 import {
   getTenant,
   createTenant,
-  // updateTenant,
+  updateTenant,
   // getCurrentResidences,
   // addFavoriteProperty,
   // removeFavoriteProperty,
@@ -11,7 +11,7 @@ import {
 const router = express.Router();
 
 router.get("/:cognitoId", getTenant);
-// router.put("/:cognitoId", updateTenant);
+router.put("/:cognitoId", updateTenant);
 router.post("/", createTenant);
 // router.get("/:cognitoId/current-residences", getCurrentResidences);
 // router.post("/:cognitoId/favorites/:propertyId", addFavoriteProperty);
