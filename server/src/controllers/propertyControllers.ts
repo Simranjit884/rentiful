@@ -174,6 +174,8 @@ export const getProperty = async (
         },
       };
       res.json(propertyWithCoordinates);
+    } else {
+      res.status(404).json({ message: "Property not found" });
     }
   } catch (err: any) {
     res
