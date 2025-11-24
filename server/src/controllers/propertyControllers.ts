@@ -1,5 +1,9 @@
 import { Request, Response } from "express";
-import { PrismaClient, Prisma } from "@prisma/client";
+import {
+  PrismaClient,
+  Prisma,
+  Location as PrismaLocation,
+} from "@prisma/client";
 import { wktToGeoJSON } from "@terraformer/wkt";
 import { S3Client } from "@aws-sdk/client-s3";
 import { Upload } from "@aws-sdk/lib-storage";
@@ -249,7 +253,7 @@ export const createProperty = async (
         : [0, 0];
 
     // create location
-    const [location] = await prisma.$queryRaw<Location[]>`
+    const [location] = await prisma.$queryRaw<PrismaLocation[]>`
     INSERT INTO "Location" (address, city, state, country, "postalCode", coordinates)
     VALUES (${address}, ${city}, ${state}, ${country}, ${postalCode}, ST_SetSRID(ST_MakePoint(${longitude}, ${latitude}), 4326))
     RETURNING id, address, city, state, country, "postalCode", ST_AsText(coordinates) as coordinates;
