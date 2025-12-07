@@ -109,6 +109,7 @@ export const createApplication = async (
       return;
     }
 
+    // $transaction ensure atomicity- either both queries success or both fail.
     const newApplication = await prisma.$transaction(async (prisma) => {
       // Create lease first
       const lease = await prisma.lease.create({
