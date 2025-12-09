@@ -13,6 +13,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    if (authLoading) return; // Wait until RTK Query finishes fetching
+
+    // Scenario 1: User is Logged In
     if (authUser) {
       const userRole = authUser.userRole?.toLowerCase();
       if (
@@ -21,10 +24,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       ) {
         router.push("/managers/properties", { scroll: false });
       } else {
+        // User is logged in but on a valid page (e.g. Tenant)
         setIsLoading(false);
       }
     }
-  }, [authUser, router, pathname]);
+    // Scenario 2: User is NOT Logged In (Guest) or Error
+    else {
+      // We must allow the page to load for guests!
+      setIsLoading(false);
+    }
+  }, [authUser, authLoading, router, pathname]);
 
   if (authLoading || isLoading) return <>Loading...</>;
 
