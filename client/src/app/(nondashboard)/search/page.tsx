@@ -8,6 +8,7 @@ import FiltersBar from "./FiltersBar";
 // import FiltersFull from "./FiltersFull";
 import { cleanParams } from "@/lib/utils";
 import { setFilters } from "@/state";
+import FiltersFull from "./FiltersFull";
 // import Map from "./Map";
 // import Listings from "./Listings";
 
@@ -47,7 +48,7 @@ const SearchPage = () => {
             isFiltersFullOpen ? "visible w-3/12 opacity-100" : "invisible w-0 opacity-0"
           }`}
         >
-          {/* <FiltersFull /> */}
+          <FiltersFull />
         </div>
         {/* <Map /> */}
         <div className="basis-4/12 overflow-y-auto">{/* <Listings /> */}</div>
