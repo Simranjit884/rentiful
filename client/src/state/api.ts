@@ -66,24 +66,6 @@ export const api = createApi({
       },
     }),
 
-    updateTenantSettings: build.mutation<
-      Tenant, // ✅ Response type: what the API returns (updated Tenant)
-      { cognitoId: string } & Partial<Tenant> // ✅ Argument type: requires cognitoId, other Tenant fields optional for updates
-    >({
-      query: ({ cognitoId, ...updatedTenant }) => ({
-        url: `tenants/${cognitoId}`,
-        method: "PUT",
-        body: updatedTenant,
-      }),
-      invalidatesTags: (result) => [{ type: "Tenants", id: result?.id }],
-      async onQueryStarted(_, { queryFulfilled }) {
-        await withToast(queryFulfilled, {
-          success: "Settings updated successfully!",
-          error: "Failed to update settings.",
-        });
-      },
-    }),
-
     updateManagerSettings: build.mutation<Manager, { cognitoId: string } & Partial<Manager>>({
       query: ({ cognitoId, ...updatedManager }) => ({
         url: `managers/${cognitoId}`,
@@ -133,6 +115,59 @@ export const api = createApi({
         });
       },
     }),
+
+    // tenant related endpoints
+    updateTenantSettings: build.mutation<
+      Tenant, // ✅ Response type: what the API returns (updated Tenant)
+      { cognitoId: string } & Partial<Tenant> // ✅ Argument type: requires cognitoId, other Tenant fields optional for updates
+    >({
+      query: ({ cognitoId, ...updatedTenant }) => ({
+        url: `tenants/${cognitoId}`,
+        method: "PUT",
+        body: updatedTenant,
+      }),
+      invalidatesTags: (result) => [{ type: "Tenants", id: result?.id }],
+      async onQueryStarted(_, { queryFulfilled }) {
+        await withToast(queryFulfilled, {
+          success: "Settings updated successfully!",
+          error: "Failed to update settings.",
+        });
+      },
+    }),
+
+    addFavoriteProperty: build.mutation<Tenant, { cognitoId: string; propertyId: number }>({
+      query: ({ cognitoId, propertyId }) => ({
+        url: `tenants/${cognitoId}/favorites/${propertyId}`,
+        method: "POST",
+      }),
+      invalidatesTags: (result) => [
+        { type: "Tenants", id: result?.id },
+        { type: "Properties", id: "LIST" },
+      ],
+      // async onQueryStarted(_, { queryFulfilled }) {
+      //   await withToast(queryFulfilled, {
+      //     success: "Added to favorites!!",
+      //     error: "Failed to add to favorites",
+      //   });
+      // },
+    }),
+
+    removeFavoriteProperty: build.mutation<Tenant, { cognitoId: string; propertyId: number }>({
+      query: ({ cognitoId, propertyId }) => ({
+        url: `tenants/${cognitoId}/favorites/${propertyId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: (result) => [
+        { type: "Tenants", id: result?.id },
+        { type: "Properties", id: "LIST" },
+      ],
+      // async onQueryStarted(_, { queryFulfilled }) {
+      //   await withToast(queryFulfilled, {
+      //     success: "Removed from favorites!",
+      //     error: "Failed to remove from favorites.",
+      //   });
+      // },
+    }),
   }),
 });
 
@@ -141,4 +176,6 @@ export const {
   useUpdateTenantSettingsMutation,
   useUpdateManagerSettingsMutation,
   useGetPropertiesQuery,
+  useAddFavoritePropertyMutation,
+  useRemoveFavoritePropertyMutation,
 } = api;
