@@ -117,6 +117,16 @@ export const api = createApi({
     }),
 
     // tenant related endpoints
+    getTenant: build.query<Tenant, string>({
+      query: (cognitoId) => `tenants/${cognitoId}`,
+      providesTags: (result) => [{ type: "Tenants", id: result?.id }],
+      // async onQueryStarted(_, { queryFulfilled }) {
+      //   await withToast(queryFulfilled, {
+      //     error: "Failed to load tenant profile.",
+      //   });
+      // },
+    }),
+
     updateTenantSettings: build.mutation<
       Tenant, // ✅ Response type: what the API returns (updated Tenant)
       { cognitoId: string } & Partial<Tenant> // ✅ Argument type: requires cognitoId, other Tenant fields optional for updates
@@ -127,12 +137,12 @@ export const api = createApi({
         body: updatedTenant,
       }),
       invalidatesTags: (result) => [{ type: "Tenants", id: result?.id }],
-      async onQueryStarted(_, { queryFulfilled }) {
-        await withToast(queryFulfilled, {
-          success: "Settings updated successfully!",
-          error: "Failed to update settings.",
-        });
-      },
+      // async onQueryStarted(_, { queryFulfilled }) {
+      //   await withToast(queryFulfilled, {
+      //     success: "Settings updated successfully!",
+      //     error: "Failed to update settings.",
+      //   });
+      // },
     }),
 
     addFavoriteProperty: build.mutation<Tenant, { cognitoId: string; propertyId: number }>({
@@ -175,6 +185,7 @@ export const {
   useGetAuthUserQuery,
   useUpdateTenantSettingsMutation,
   useUpdateManagerSettingsMutation,
+  useGetTenantQuery,
   useGetPropertiesQuery,
   useAddFavoritePropertyMutation,
   useRemoveFavoritePropertyMutation,
