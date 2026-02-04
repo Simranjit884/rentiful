@@ -7,6 +7,7 @@ import ImagePreviews from "./ImagePreviews";
 import PropertyOverview from "./PropertyOverview";
 import PropertyDetails from "./PropertyDetails";
 import PropertyLocation from "./PropertyLocation";
+import ContactWidget from "./ContactWidget";
 
 const SingleListing = () => {
   const { id } = useParams();
@@ -22,6 +23,10 @@ const SingleListing = () => {
           <PropertyOverview propertyId={propertyId} />
           <PropertyDetails propertyId={propertyId} />
           <PropertyLocation propertyId={propertyId} />
+        </div>
+
+        <div className="order-1 md:order-2">
+          <ContactWidget onOpenModal={() => setIsModalOpen(true)} />
         </div>
       </div>
     </div>
